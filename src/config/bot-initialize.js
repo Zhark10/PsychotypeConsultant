@@ -1,4 +1,5 @@
 import TelegramApi from "node-telegram-bot-api";
 
-const token = "XXXXXX" // TODO: завести .env
-export const bot = new TelegramApi(token, { polling: true })
+import { CONSTANTS } from "../config/constants.js"
+
+export const bot = new TelegramApi(CONSTANTS.APIS.tgbot, { polling: true })
