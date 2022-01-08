@@ -5,7 +5,8 @@ const UserSchema = mongoose.Schema({
   lastname: {type: String, required: true},
   nickname: {type: String, required: true},
   prevQuestionId: {type: Number, required: false},
-  testResult: {type: Array, required: false},
+  testAnswers: {type: Array, required: false},
+  testResult: {type: Number, required: false},
   role: {type: String, required: true},
 })
 

@@ -9,9 +9,10 @@ import { CONSTANTS } from '../../config/constants.js'
 const { emoji } = pkg;
 
 export class CommandService {
-  constructor(bot, msg) {
-    this.bot = bot
-    this.msg = msg
+  constructor(opts) {
+    this.bot = opts.bot
+    this.msg = opts.msg
+    this.neuralNetwork = opts.neuralNetwork
   }
 
   getCommonInfoForActions = async () => {
