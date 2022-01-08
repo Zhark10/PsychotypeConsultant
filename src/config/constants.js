@@ -19,16 +19,23 @@ const SEPARATOR_TO_CREATE_UNIQUE_COMMAND = "__"
 
 const COMMON_COMMANDS = {
   sayHello: "/start",
-  runTest: "/run_test",
+  askAQuestion: "/ask_a_question",
 }
 
 const ADMIN_COMMANDS = {
   getStatsByCandidates: "/stats_by_candidates",
 }
 
+const USER_ROLES = {
+  ADMIN = "admin",
+  EMPLOYEE="employee",
+  CANDIDATE = "candidate"
+}
+
 export const CONSTANTS = {
   SEPARATOR_TO_CREATE_UNIQUE_COMMAND,
   COMMON_COMMANDS,
   ADMIN_COMMANDS,
-  TOKENS
+  TOKENS,
+  USER_ROLES,
 }

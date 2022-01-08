@@ -1,4 +1,4 @@
-const test = [
+export const PsychotypeTest = [
   {
     quiestionId: 1,
     question: 'Ваши логические умозаключения обоснованны и правильны?',
