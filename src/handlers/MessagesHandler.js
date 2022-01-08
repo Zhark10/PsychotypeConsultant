@@ -8,12 +8,12 @@ export const MessagesHandler = async (bot) => {
 
   bot.on("message", async (msg) => {
     const user = await User.findOne({ firstname: msg.from.first_name, lastname: msg.from.last_name, nickname: msg.from.username }).exec();
-    const isAdmin = (user?.role === "admin")
-    const commandService = new (isAdmin ? AdminCommandService : CandidateCommandService)(bot)
+    const isAdmin = (user?.role === CONSTANTS.USER_ROLES.ADMIN)
+    const commandService = new (isAdmin ? AdminCommandService : CandidateCommandService)(bot, msg)
 
     const actions = {
       [COMMON_COMMANDS.sayHello]: commandService.sayHello,
-      [COMMON_COMMANDS.runTest]: commandService.runTest
+      [COMMON_COMMANDS.askAQuestion]: commandService.askAQuestion
     }
 
     if (isAdmin) {
