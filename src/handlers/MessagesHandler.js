@@ -1,13 +1,14 @@
 import { CandidateCommandService } from "../services/command/CandidateCommandService.js"
 import { AdminCommandService } from "../services/command/AdminCommandService.js"
 import { CONSTANTS } from "../config/constants.js"
+import { getCommonUserInfo } from '../utils/get-common-user-info.js'
 
 const { COMMON_COMMANDS, ADMIN_COMMANDS } = CONSTANTS
 
 export const MessagesHandler = async (bot) => {
 
   bot.on("message", async (msg) => {
-    const user = await User.findOne({ firstname: msg.from.first_name, lastname: msg.from.last_name, nickname: msg.from.username }).exec();
+    const user = await User.findOne(getCommonUserInfo(msg)).exec();
     const isAdmin = (user?.role === CONSTANTS.USER_ROLES.ADMIN)
     const commandService = new (isAdmin ? AdminCommandService : CandidateCommandService)(bot, msg)
 

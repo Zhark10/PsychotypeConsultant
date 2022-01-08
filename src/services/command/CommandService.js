@@ -2,13 +2,11 @@ import pkg from 'node-emoji';
 
 import { User } from '../../models/User.js'
 import { getMenuCommands } from '../../utils/get-menu-commands.js'
+import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
+
 import { CONSTANTS } from '../../config/constants.js'
 
 const { emoji } = pkg;
-
-const getCommonUserInfo = (msg) => {
-  return { firstname: msg.from.first_name, lastname: msg.from.last_name, nickname: msg.from.username }
-}
 
 export class CommandService {
   constructor(bot, msg) {
