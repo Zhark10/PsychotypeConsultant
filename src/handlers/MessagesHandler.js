@@ -7,7 +7,8 @@ const { COMMON_COMMANDS, ADMIN_COMMANDS } = CONSTANTS
 export const MessagesHandler = async (bot) => {
 
   bot.on("message", async (msg) => {
-    const isAdmin = true // TODO: Добавить определение по текущему айдишнику юзера в базе, какая у него роль
+    const user = await User.findOne({ firstname: msg.from.first_name, lastname: msg.from.last_name, nickname: msg.from.username }).exec();
+    const isAdmin = (user?.role === "admin")
     const commandService = new (isAdmin ? AdminCommandService : CandidateCommandService)(bot)
 
     const actions = {
