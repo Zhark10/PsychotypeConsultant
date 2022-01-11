@@ -27,9 +27,9 @@ const ADMIN_COMMANDS = {
 }
 
 const USER_ROLES = {
-  ADMIN = "admin",
-  EMPLOYEE="employee",
-  CANDIDATE = "candidate"
+  ADMIN: "admin",
+  EMPLOYEE: "employee",
+  CANDIDATE: "candidate"
 }
 
 export const CONSTANTS = {
