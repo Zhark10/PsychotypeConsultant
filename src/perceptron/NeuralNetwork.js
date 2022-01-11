@@ -1,11 +1,11 @@
-import brain from 'brain.js'
+import { NeuralNetwork as BrainNeuralNetwork } from '../config/imports/brain.cjs'
 import { CONSTANTS } from '../config/constants.js'
 import { User } from '../models/User.js'
 import { NeuralUtils } from './NeuralUtils.js'
 
 export class NeuralNetwork extends NeuralUtils {
   constructor() {
-    this.network = new brain.NeuralNetwork()
+    this.network = new BrainNeuralNetwork()
   }
 
   perceptronTrain = async () => {
