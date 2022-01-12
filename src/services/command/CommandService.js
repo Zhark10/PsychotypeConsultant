@@ -3,6 +3,7 @@ import pkg from 'node-emoji';
 import { User } from '../../models/User.js'
 import { getMenuCommands } from '../../utils/get-menu-commands.js'
 import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
+import { getCommonInfoForActions } from './helpers/get-info-for-actions.js'
 
 import { CONSTANTS } from '../../config/constants.js'
 
@@ -15,14 +16,8 @@ export class CommandService {
     this.neuralNetwork = opts.neuralNetwork
   }
 
-  getCommonInfoForActions = async () => {
-    const user = await User.findOne(getCommonUserInfo(this.msg)).exec();
-    const chatId = this.msg.chat.id
-    return { user, chatId }
-  }
-
   sayHello = async () => {
-    const { user, chatId } = await getCommonInfoForActions()
+    const { user, chatId } = await getCommonInfoForActions(this.msg)
     const isAdmin = (user?.role === CONSTANTS.USER_ROLES.ADMIN)
     const menuCommands = getMenuCommands(isAdmin)
     this.bot.setMyCommands(menuCommands)
@@ -36,12 +31,12 @@ export class CommandService {
   }
 
   askAQuestion = async () => {
-    const { user, chatId } = await getCommonInfoForActions()
+    const { user, chatId } = await getCommonInfoForActions(this.msg)
 
   }
 
   throwFallbackMessage = async () => {
-    const { user, chatId } = await getCommonInfoForActions()
+    const { user, chatId } = await getCommonInfoForActions(this.msg)
     if (user?.prevQuestionId === 36) return this.bot.sendMessage(chatId, "Спасибо за прохождение теста!")
     return this.bot.sendMessage(chatId, "Ответ некорректен")
   }
