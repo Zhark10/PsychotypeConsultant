@@ -16,26 +16,26 @@ export class CommandService {
     this.neuralNetwork = opts.neuralNetwork
   }
 
-  sayHello = async () => {
+  [CONSTANTS.COMMANDS.SAY_HELLO] = async () => {
     const { user, chatId } = await getCommonInfoForActions(this.msg)
     const isAdmin = (user?.role === CONSTANTS.USER_ROLES.ADMIN)
     const menuCommands = getMenuCommands(isAdmin)
     this.bot.setMyCommands(menuCommands)
 
+    if (isAdmin) {
+      await this.bot.sendMessage(chatId, `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v}! Ты администратор!`)
+      return this.bot.sendMessage(chatId, `Чтобы узнать статистику по кандидатам, нажми на ${CONSTANTS.COMMANDS.GET_STATS_BY_CANDIDATES}`)
+    }
+
     if (!user) {
-      await User.create({...getCommonUserInfo(this.msg), role: CONSTANTS.USER_ROLES.CANDIDATE })
+      await User.create({ ...getCommonUserInfo(this.msg), role: CONSTANTS.USER_ROLES.CANDIDATE })
     }
 
     await this.bot.sendMessage(chatId, `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v} Я хочу задать тебе несколько вопросов, чтобы определить твой психотип. Давай начнем!`)
-    return this.bot.sendMessage(chatId, `Для начала нажми на ${CONSTANTS.COMMON_COMMANDS.runTest}`)
+    return this.bot.sendMessage(chatId, `Для начала нажми на ${CONSTANTS.COMMANDS.ASK_A_QUESTION}`)
   }
 
-  askAQuestion = async () => {
-    const { user, chatId } = await getCommonInfoForActions(this.msg)
-
-  }
-
-  throwFallbackMessage = async () => {
+  [CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE] = async () => {
     const { user, chatId } = await getCommonInfoForActions(this.msg)
     if (user?.prevQuestionId === 36) return this.bot.sendMessage(chatId, "Спасибо за прохождение теста!")
     return this.bot.sendMessage(chatId, "Ответ некорректен")
