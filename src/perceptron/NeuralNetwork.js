@@ -5,6 +5,7 @@ import { NeuralUtils } from './NeuralUtils.js'
 
 export class NeuralNetwork extends NeuralUtils {
   constructor() {
+    super()
     this.network = new BrainNeuralNetwork()
   }
 
