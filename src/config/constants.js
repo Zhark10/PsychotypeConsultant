@@ -11,19 +11,17 @@ if (process.env.NODE_ENV) {
 }
 
 const TOKENS = {
-  mongodb: process.env.MONGO_DB_CONNECTION_URL,
-  tgbot: process.env.TELEGRAM_BOT
+  MONGO_DB: process.env.MONGO_DB_CONNECTION_URL,
+  TELEGRAM_BOT: process.env.TELEGRAM_BOT
 }
 
 const SEPARATOR_TO_CREATE_UNIQUE_COMMAND = "__"
 
-const COMMON_COMMANDS = {
-  sayHello: "/start",
-  askAQuestion: "/ask_a_question",
-}
-
-const ADMIN_COMMANDS = {
-  getStatsByCandidates: "/stats_by_candidates",
+const COMMANDS = {
+  SAY_HELLO: "/start",
+  ASK_A_QUESTION: "/ask_a_question",
+  GET_STATS_BY_CANDIDATES: "/stats_by_candidates",
+  THROW_FALLBACK_MESSAGE: "throw_fallback_message"
 }
 
 const USER_ROLES = {
@@ -34,8 +32,7 @@ const USER_ROLES = {
 
 export const CONSTANTS = {
   SEPARATOR_TO_CREATE_UNIQUE_COMMAND,
-  COMMON_COMMANDS,
-  ADMIN_COMMANDS,
+  COMMANDS,
   TOKENS,
   USER_ROLES,
 }
