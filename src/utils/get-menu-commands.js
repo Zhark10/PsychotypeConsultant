@@ -1,16 +1,16 @@
 import { CONSTANTS } from "../config/constants.js"
 
-const { COMMON_COMMANDS, ADMIN_COMMANDS } = CONSTANTS
+const { COMMANDS } = CONSTANTS
 
 export const getMenuCommands = (isAdmin) => {
   const commonCommands = [
-    { command: COMMON_COMMANDS.sayHello, description: "Поприветствовать" },
-    { command: COMMON_COMMANDS.runTest, description: "Запустить тест" },
+    { command: COMMANDS.SAY_HELLO, description: "Поприветствовать" },
+    { command: COMMANDS.ASK_A_QUESTION, description: "Запустить тест" },
   ]
 
   if (isAdmin) {
     return commonCommands.concat([
-      { command: ADMIN_COMMANDS.getStatsByCandidates, description: "Вывести статистику" },
+      { command: COMMANDS.GET_STATS_BY_CANDIDATES, description: "Вывести статистику" },
     ])
   }
 
