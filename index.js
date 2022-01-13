@@ -1,5 +1,5 @@
 
-import { MessagesHandler } from "./src/handlers/MessagesHandler.js"
+import { MessagesHandler } from "./src/handlers/MessagesHandler/MessagesHandler.js"
 import { createDatabaseConnection } from "./src/config/db-connection.js"
 import { bot } from "./src/config/bot-initialize.js"
 
