@@ -1,5 +1,5 @@
 import { NeuralNetwork } from '../../perceptron/NeuralNetwork.js'
-import { initConfigsForMessagesHandler } from './InitConfigsForMessagesHandler.js'
+import { initConfigsForMessagesHandler } from './MessagesHandlerInitConfigs.js'
 import { CONSTANTS } from "../../config/constants.js"
 
 export const MessagesHandler = async (bot) => {
