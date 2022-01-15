@@ -1,22 +1,4 @@
-const defineOptionsByMode = (testItem) => {
-  const defaultOptions = {
-    1: 'Да',
-    2: 'Скорее "Да"',
-    3: 'Затрудняюсь ответить',
-    4: 'Скорее, "Нет"',
-    5: 'Нет'
-  }
-
-  const optionModes = {
-    1: defaultOptions
-  }
-
-  return {
-    questionId: testItem.questionId,
-    question: testItem.question,
-    options: optionModes[testItem.optionMode]
-  }
-}
+export { defineOptionsByMode } from './PsychotypeTestHelpers.js'
 
 const test = [
   {
