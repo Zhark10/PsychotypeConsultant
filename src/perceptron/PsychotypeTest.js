@@ -14,7 +14,7 @@ const defineOptionsByMode = (testItem) => {
   return {
     questionId: testItem.questionId,
     question: testItem.question,
-    options: optionModes[question.optionMode]
+    options: optionModes[testItem.optionMode]
   }
 }
 
