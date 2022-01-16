@@ -19,7 +19,8 @@ const SEPARATOR_TO_CREATE_UNIQUE_COMMAND = "__"
 
 const COMMANDS = {
   SAY_HELLO: "/start",
-  ASK_A_QUESTION: "/ask_a_question",
+  RUN_TEST: "/run_test",
+  ASK_NEXT_QUESTION: "/ask_next_question",
   GET_STATS_BY_CANDIDATES: "/stats_by_candidates",
   THROW_FALLBACK_MESSAGE: "throw_fallback_message"
 }

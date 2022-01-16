@@ -5,7 +5,7 @@ const { COMMANDS } = CONSTANTS
 export const getMenuCommands = (isAdmin) => {
   const commonCommands = [
     { command: COMMANDS.SAY_HELLO, description: "Поприветствовать" },
-    { command: COMMANDS.ASK_A_QUESTION, description: "Запустить тест" },
+    { command: COMMANDS.RUN_TEST, description: "Запустить тест" },
   ]
 
   if (isAdmin) {
