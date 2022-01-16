@@ -3,8 +3,10 @@ import { initConfigsForMessagesHandler } from './MessagesHandlerInitConfigs.js'
 import { CONSTANTS } from "../../config/constants.js"
 
 export const MessagesHandler = async (bot) => {
+  let neuralNetwork;
+
   bot.on("message", async (msg) => {
-    const neuralNetwork = new NeuralNetwork()
+    neuralNetwork = new NeuralNetwork()
     const dependencies = { bot, msg, neuralNetwork }
 
     const configs = await initConfigsForMessagesHandler(msg, dependencies)
