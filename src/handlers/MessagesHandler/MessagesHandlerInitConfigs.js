@@ -21,5 +21,5 @@ export const initConfigsForMessagesHandler = async (msg, dependencies) => {
 
   const definedService = new Service(dependencies)
 
-  return { definedService }
+  return definedService
 }
