@@ -10,9 +10,8 @@ export const MessagesHandler = async (bot) => {
   bot.on("message", async (msg) => {
     const dependencies = { bot, msg, neuralNetwork }
     definedService = await initConfigsForMessagesHandler(msg, dependencies)
-
     const action = definedService[msg.text] || definedService[CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE]
-    return action()
+    return action() 
   })
 
   bot.on("callback_query", async (callbackQuery) => {
@@ -28,11 +27,14 @@ export const MessagesHandler = async (bot) => {
     const answerId = callbackQuery.data;
     await User.updateOne(userDataToSearch, { $push: { testAnswers: answerId } }).exec();
 
-    console.log(question.currentQuestionIndex, answerId)
-    
-    
     if (!question.nextQuestionIndex) {
       bot.sendMessage('Тест завершен! Спасибо за участие!')
+      const isForTrainingSet = [CONSTANTS.USER_ROLES.ADMIN, CONSTANTS.USER_ROLES.EMPLOYEE].some(user.role)
+      if (isForTrainingSet) {
+        // TODO: perceptron train
+        return
+      }
+      // TODO: candidate score calculation
     }
     
     const action = definedService[CONSTANTS.COMMANDS.ASK_NEXT_QUESTION]
