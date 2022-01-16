@@ -32,7 +32,7 @@ export class CommandService {
     }
 
     await this.bot.sendMessage(chatId, `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v} Я хочу задать тебе несколько вопросов, чтобы определить твой психотип. Давай начнем!`)
-    return this.bot.sendMessage(chatId, `Для начала нажми на ${CONSTANTS.COMMANDS.ASK_A_QUESTION}`)
+    return this.bot.sendMessage(chatId, `Для начала нажми на ${CONSTANTS.COMMANDS.RUN_TEST}`)
   }
 
   [CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE] = async () => {
