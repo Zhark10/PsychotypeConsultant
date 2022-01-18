@@ -9,7 +9,7 @@
     "start": "node index.js",
     "stage": "NODE_ENV=development node index.js",
     "prod": "NODE_ENV=production node index.js",
-    "gen:last-versions": "npm shrinkwrap && node ./scripts/lockdown-generation"
+    "gen:last-versions": "npm shrinkwrap && node ./src/scripts/lockdown-generation"
   },
   "repository": {
     "type": "git",
