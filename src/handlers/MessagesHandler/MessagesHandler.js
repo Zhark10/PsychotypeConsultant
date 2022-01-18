@@ -1,5 +1,5 @@
 import { NeuralNetwork } from "../../perceptron/NeuralNetwork.js"
-import { initConfigsForMessagesHandler } from "./MessagesHandlerInitConfigs.js"
+import { MessageHandlerHelpers } from "./MessagesHandlerHelpers.js"
 import { CONSTANTS } from "../../config/constants.js"
 import { User } from '../../models/User.js'
 
@@ -9,7 +9,7 @@ export const MessagesHandler = async (bot) => {
   
   bot.on("message", async (msg) => {
     const dependencies = { bot, msg, neuralNetwork }
-    definedService = await initConfigsForMessagesHandler(msg, dependencies)
+    definedService = await MessageHandlerHelpers.defineService(msg, dependencies)
     const action = definedService[msg.text] || definedService[CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE]
     return action() 
   })
