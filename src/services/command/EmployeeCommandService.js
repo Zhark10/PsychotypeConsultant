@@ -1,5 +1,7 @@
 import { CommandService } from "./CommandService.js"
 
+import { CONSTANTS } from '../../config/constants.js'
+
 export class EmployeeCommandService extends CommandService {
   [CONSTANTS.COMMANDS.RUN_TEST] = async () => {
     const { test } = PsychotypeData
