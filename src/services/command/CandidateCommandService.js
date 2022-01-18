@@ -2,8 +2,8 @@ import { CommandService } from "./CommandService.js"
 import { CONSTANTS } from "../../config/constants.js"
 import { getCommonInfoForActions } from "./helpers/get-info-for-actions.js"
 import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
-import { PsychotypeData } from "../../perceptron/PsychotypeTest.js"
-import { User } from "../../models/User.js"
+import { PsychotypeData } from "../../perceptron/NeuralPsychotypeTest.js"
+import { User } from "../../models/ModelOfUser.js"
 
 export class CandidateCommandService extends CommandService {
   [CONSTANTS.COMMANDS.RUN_TEST] = async () => {

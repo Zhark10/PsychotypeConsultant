@@ -1,6 +1,6 @@
 import pkg from 'node-emoji';
 
-import { User } from '../../models/User.js'
+import { User } from '../../models/ModelOfUser.js'
 import { getMenuCommands } from '../../utils/get-menu-commands.js'
 import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
 import { getCommonInfoForActions } from './helpers/get-info-for-actions.js'

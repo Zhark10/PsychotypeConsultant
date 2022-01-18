@@ -1,6 +1,6 @@
 import { NeuralNetwork as BrainNeuralNetwork } from '../utils/imports/brain.cjs'
 import { CONSTANTS } from '../config/constants.js'
-import { User } from '../models/User.js'
+import { User } from '../models/ModelOfUser.js'
 import { NeuralUtils } from './NeuralUtils.js'
 
 export class NeuralNetwork extends NeuralUtils {

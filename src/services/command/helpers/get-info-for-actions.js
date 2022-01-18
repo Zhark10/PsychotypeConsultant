@@ -1,4 +1,4 @@
-import { User } from '../../../models/User.js'
+import { User } from '../../../models/ModelOfUser.js'
 import { getCommonUserInfo } from '../../../utils/get-common-user-info.js'
 
 export const getCommonInfoForActions = async (msg) => {

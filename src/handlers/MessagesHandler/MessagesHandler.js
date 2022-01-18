@@ -1,7 +1,7 @@
 import { NeuralNetwork } from "../../perceptron/NeuralNetwork.js"
 import { MessageHandlerHelpers } from "./MessagesHandlerHelpers.js"
 import { CONSTANTS } from "../../config/constants.js"
-import { User } from '../../models/User.js'
+import { User } from '../../models/ModelOfUser.js'
 
 export const MessagesHandler = async (bot) => {
   let definedService;

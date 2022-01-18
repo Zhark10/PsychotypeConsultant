@@ -1,4 +1,4 @@
-import { User } from '../../models/User.js'
+import { User } from '../../models/ModelOfUser.js'
 import { CONSTANTS } from "../../config/constants.js"
 import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
 
