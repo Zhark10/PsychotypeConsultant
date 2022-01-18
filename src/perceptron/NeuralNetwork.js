@@ -1,4 +1,4 @@
-import { NeuralNetwork as BrainNeuralNetwork } from '../config/imports/brain.cjs'
+import { NeuralNetwork as BrainNeuralNetwork } from '../utils/imports/brain.cjs'
 import { CONSTANTS } from '../config/constants.js'
 import { User } from '../models/User.js'
 import { NeuralUtils } from './NeuralUtils.js'

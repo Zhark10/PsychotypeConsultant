@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-import { CONSTANTS } from "../config/constants.js"
+import { CONSTANTS } from "./constants.js"
 
 const createDatabaseConnection = async () => {
   try {
