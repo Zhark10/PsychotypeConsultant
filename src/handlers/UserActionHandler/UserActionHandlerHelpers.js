@@ -7,19 +7,24 @@ import { EmployeeCommandService } from "../../services/command/EmployeeCommandSe
 import { AdminCommandService } from "../../services/command/AdminCommandService.js"
 import { CommandService } from "../../services/command/CommandService.js"
 
-export const UserActionHandlerHelpers = {
-  defineService: async (msg, dependencies) => {
-    const user = await User.findOne(getCommonUserInfo(msg)).exec();
-    const role = user?.role;
-  
-    const services = {
-      [CONSTANTS.USER_ROLES.ADMIN]: AdminCommandService,
-      [CONSTANTS.USER_ROLES.EMPLOYEE]: EmployeeCommandService,
-      [CONSTANTS.USER_ROLES.CANDIDATE]: CandidateCommandService
+export const UserActionHandlerHelpersBy = {
+  messages: {
+    defineService: async (msg, dependencies) => {
+      const user = await User.findOne(getCommonUserInfo(msg)).exec();
+      const role = user?.role;
+
+      const services = {
+        [CONSTANTS.USER_ROLES.ADMIN]: AdminCommandService,
+        [CONSTANTS.USER_ROLES.EMPLOYEE]: EmployeeCommandService,
+        [CONSTANTS.USER_ROLES.CANDIDATE]: CandidateCommandService
+      }
+
+      const Service = services[role] || CommandService
+      const definedService = new Service(dependencies)
+      return definedService
     }
-  
-    const Service = services[role] || CommandService
-    const definedService = new Service(dependencies)
-    return definedService
+  },
+  callbackQueries: {
+    
   }
 }

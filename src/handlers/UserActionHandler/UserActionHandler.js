@@ -1,5 +1,5 @@
 import { NeuralNetwork } from "../../perceptron/NeuralNetwork.js"
-import { UserActionHandlerHelpers } from "./UserActionHandlerHelpers.js"
+import { UserActionHandlerHelpersBy } from "./UserActionHandlerHelpers.js"
 import { CONSTANTS } from "../../config/constants.js"
 import { User } from '../../models/ModelOfUser.js'
 
@@ -9,7 +9,7 @@ export const UserActionHandler = async (bot) => {
   
   bot.on("message", async (msg) => {
     const dependencies = { bot, msg, neuralNetwork }
-    definedService = await UserActionHandlerHelpers.defineService(msg, dependencies)
+    definedService = await UserActionHandlerHelpersBy.messages.defineService(msg, dependencies)
     const action = definedService[msg.text] || definedService[CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE]
     return action() 
   })
@@ -31,9 +31,10 @@ export const UserActionHandler = async (bot) => {
       bot.sendMessage('Тест завершен! Спасибо за участие!')
       const isForTrainingSet = [CONSTANTS.USER_ROLES.ADMIN, CONSTANTS.USER_ROLES.EMPLOYEE].some(user.role)
       if (isForTrainingSet) {
-        // TODO: perceptron train
+        neuralNetwork.perceptronTrain()
         return
       }
+      
       // TODO: candidate score calculation
     }
     
