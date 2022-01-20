@@ -4,12 +4,10 @@ import { User } from '../../models/ModelOfUser.js'
 import { getMenuCommands } from '../../utils/get-menu-commands.js'
 import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
 import { getCommonInfoForActions } from './helpers/get-info-for-actions.js'
-import { PsychotypeData } from "../../perceptron/NeuralPsychotypeTest.js"
 
 import { CONSTANTS } from '../../config/constants.js'
 
 const { emoji } = pkg;
-const { test } = PsychotypeData
 
 export class CommandService {
   constructor(opts) {
@@ -38,8 +36,6 @@ export class CommandService {
   }
 
   [CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE] = async () => {
-    const { user, chatId } = await getCommonInfoForActions(this.msg)
-    if (user?.prevQuestionId === test.length) return this.bot.sendMessage(chatId, "Спасибо за прохождение теста!")
     return this.bot.sendMessage(chatId, "Ответ некорректен")
   }
 }
