@@ -17,19 +17,32 @@ export class NeuralNetwork extends NeuralUtils {
   }
 
   perceptronTrain = async () => {
-    const employees = User.find({ role: CONSTANTS.USER_ROLES.EMPLOYEE })
-    const admins = User.find({ role: CONSTANTS.USER_ROLES.ADMIN})
+    const employees = await User.find({ role: CONSTANTS.USER_ROLES.EMPLOYEE })
+    const admins = await User.find({ role: CONSTANTS.USER_ROLES.ADMIN })
+
     const usersForTrainingSet = [...employees, ...admins]
-    const testResultsForSelectedUsers = usersForTrainingSet.map(employee => employee.testResult)
+
+    const getCorrectTestAnswers = user => user.testAnswers.map(Number)
+    const testResultsForSelectedUsers = usersForTrainingSet.map(getCorrectTestAnswers)
+    console.log('testResultsForSelectedUsers', testResultsForSelectedUsers)
+
     const trainingData = testResultsForSelectedUsers.map(result => ({
       input: result,
       output: this.rates.IS_THE_DESIRED_CANDIDATE,
     }))
 
+    console.log('trainingData', trainingData)
     this.network.train(trainingData, {
       iterations: 10000,
-      logPeriod: 10,
+      logPeriod: 1000,
       log: console.log
     })
+  }
+
+  runTestAndSendResult = async (candidateId) => {
+    const foundCandidate = await User.findById(candidateId).exec();
+    const { testAnswers } = foundCandidate
+    const output = this.network.run(testAnswers.map(Number))
+    console.log('foundCandidate', output)
   }
 }
