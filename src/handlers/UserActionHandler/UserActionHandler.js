@@ -1,15 +1,15 @@
 import { NeuralNetwork } from "../../perceptron/NeuralNetwork.js"
-import { MessageHandlerHelpers } from "./MessagesHandlerHelpers.js"
+import { UserActionHandlerHelpers } from "./UserActionHandlerHelpers.js"
 import { CONSTANTS } from "../../config/constants.js"
 import { User } from '../../models/ModelOfUser.js'
 
-export const MessagesHandler = async (bot) => {
+export const UserActionHandler = async (bot) => {
   let definedService;
   const neuralNetwork = new NeuralNetwork();
   
   bot.on("message", async (msg) => {
     const dependencies = { bot, msg, neuralNetwork }
-    definedService = await MessageHandlerHelpers.defineService(msg, dependencies)
+    definedService = await UserActionHandlerHelpers.defineService(msg, dependencies)
     const action = definedService[msg.text] || definedService[CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE]
     return action() 
   })

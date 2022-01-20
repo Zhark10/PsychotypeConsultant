@@ -7,7 +7,7 @@ import { EmployeeCommandService } from "../../services/command/EmployeeCommandSe
 import { AdminCommandService } from "../../services/command/AdminCommandService.js"
 import { CommandService } from "../../services/command/CommandService.js"
 
-export const MessageHandlerHelpers = {
+export const UserActionHandlerHelpers = {
   defineService: async (msg, dependencies) => {
     const user = await User.findOne(getCommonUserInfo(msg)).exec();
     const role = user?.role;
