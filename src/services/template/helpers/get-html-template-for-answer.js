@@ -3,12 +3,15 @@ export const getHtmlTemplateForAnswer = (answer) => {
     primary: '#000000',
     secondary: '#ffff00'
   }
+  const answerId = answer.split('.')[0]
+  const answerText = answer.split('.')[1]
   return `
     <body style="
       margin: 0; 
       width: 360; 
       height: 96;
       background-color: ${colors.secondary};
+      font-family: Courier New;
     ">
       <div style=" 
         display: flex; 
@@ -19,19 +22,26 @@ export const getHtmlTemplateForAnswer = (answer) => {
         height: 96;
       ">
         <span style="
-          border-radius: 12px;
-          min-width: 24px;
-          min-height: 24px;
-          font-size: 20px;
+          border-radius: 13px;
+          min-width: 26px;
+          min-height: 26px;
+          font-size: 16px;
           display: flex; 
           align-items: center; 
           justify-content: center; 
-          font-weight: bold;
           background-color: ${colors.primary}; 
           color: ${colors.secondary};
           margin-right: 8px;
-        ">${answer.split('.')[0]}</span>
-        <span style="color: ${colors.primary};">${answer.split('.')[1]}</span>
+        ">
+          ${answerId}
+        </span>
+        <span style="
+          color: ${colors.primary};
+          font-size: 16px;
+          text-align: center;
+        ">
+          ${answerText}
+        </span>
       </div>
     </body>`
 }
