@@ -25,7 +25,10 @@ export class CommandService {
     this.bot.setMyCommands(menuCommands)
 
     if (isAdmin) {
-      await this.bot.sendMessage(chatId, `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v}! Ты администратор!`)
+      const picture = await this.templateService.createTemplateForWelcomeMessage(
+        `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v}! Ты администратор!`
+      )
+      await this.bot.sendPhoto(chatId, picture)
       return this.bot.sendMessage(chatId, `Чтобы узнать статистику по кандидатам, нажми на ${CONSTANTS.COMMANDS.GET_STATS_BY_CANDIDATES}`)
     }
 
@@ -33,7 +36,10 @@ export class CommandService {
       await User.create({ ...getCommonUserInfo(this.msg), role: CONSTANTS.USER_ROLES.CANDIDATE })
     }
 
-    await this.bot.sendMessage(chatId, `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v} Я хочу задать тебе несколько вопросов, чтобы определить твой психотип. Давай начнем!`)
+    const picture = await this.templateService.createTemplateForWelcomeMessage(
+      `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v} Я хочу задать тебе несколько вопросов, чтобы определить твой психотип. Давай начнем!`
+    )
+    await this.bot.sendPhoto(chatId, picture)
     return this.bot.sendMessage(chatId, `Для начала нажми на ${CONSTANTS.COMMANDS.RUN_TEST}`)
   }
 
