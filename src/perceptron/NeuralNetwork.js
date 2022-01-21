@@ -19,18 +19,16 @@ export class NeuralNetwork extends NeuralUtils {
 
     const usersForTrainingSet = [...employees, ...admins]
 
-    const testResultsForSelectedUsers = usersForTrainingSet.map(user => {
-      return user.testAnswers.map(this.sigmoid)
-    })
+    const testResultsForSelectedUsers = usersForTrainingSet.map(user => user.testAnswers)
 
     const trainingData = testResultsForSelectedUsers.map(result => ({
       input: result,
-      output: this.rates.IS_THE_DESIRED_CANDIDATE,
+      output: { testResult: this.rates.IS_THE_DESIRED_CANDIDATE },
     }))
 
     this.network.train(trainingData, {
       iterations: 10000,
-      logPeriod: 1000,
+      logPeriod: 10,
       log: console.log
     })
   }
@@ -38,8 +36,9 @@ export class NeuralNetwork extends NeuralUtils {
   runTestAndSendResult = async (candidateId) => {
     const foundCandidate = await User.findById(candidateId).exec();
     const { testAnswers } = foundCandidate
-    const answersToTest = testAnswers.map(answer => this.sigmoid(answer))
+    const answersToTest = testAnswers
     const output = await this.network.run(answersToTest)
-    console.log('output', output)
+    foundCandidate.testResult = output.testResult
+    await foundCandidate.save()
   }
 }
