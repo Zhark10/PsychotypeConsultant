@@ -32,13 +32,10 @@ export const UserActionHandler = async (bot) => {
     if (updatedUser.testAnswers.length >= test.length) {
       bot.sendMessage(chatId, 'Тест завершен! Спасибо за участие!')
       const isForTrainingSet = [CONSTANTS.USER_ROLES.ADMIN, CONSTANTS.USER_ROLES.EMPLOYEE].includes(updatedUser.role)
-      if (isForTrainingSet) {
-        await neuralNetwork.perceptronTrain()
-      }
-      neuralNetwork.runTestAndSendResult(updatedUser.id)
-    } else {
-      const action = definedService[CONSTANTS.COMMANDS.ASK_NEXT_QUESTION]
-      return action(updatedUser.testAnswers.length)
+      if (isForTrainingSet) return neuralNetwork.perceptronTrain()
+      return neuralNetwork.runTestAndSendResult(updatedUser.id)
     }
+    const action = definedService[CONSTANTS.COMMANDS.ASK_NEXT_QUESTION]
+    return action(updatedUser.testAnswers.length)
   });
 }
