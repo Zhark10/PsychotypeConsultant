@@ -12,12 +12,14 @@ export class CandidateCommandService extends CommandService {
     const firstTestItem = test[0]
     const { chatId } = await getCommonInfoForActions(this.msg)
     await User.updateOne(getCommonUserInfo(this.msg), { testAnswers: [] }).exec();
-    return this.bot.sendMessage(chatId, firstTestItem.question, firstTestItem.options)
+    const picture = await this.templateService.createTemplateForAnswer(firstTestItem.question)
+    return this.bot.sendPhoto(chatId, picture, firstTestItem.options)
   }
 
   [CONSTANTS.COMMANDS.ASK_NEXT_QUESTION] = async (nextQuestionIndex) => {
     const nextQuestion = test[nextQuestionIndex]
     const { chatId } = await getCommonInfoForActions(this.msg)
-    return this.bot.sendMessage(chatId, nextQuestion.question, nextQuestion.options)
+    const picture = await this.templateService.createTemplateForAnswer(nextQuestion.question)
+    return this.bot.sendPhoto(chatId, picture, nextQuestion.options)
   }
  }
