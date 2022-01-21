@@ -2,7 +2,7 @@ export class NeuralUtils {
   constructor() { }
 
   sigmoid(x) {
-    return Number((1 / (1 + Math.exp(-x))).toFixed(2));
+    return 1 / (1 + Math.exp(-x));
   }
 
   get rates() {
