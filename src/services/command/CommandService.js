@@ -4,7 +4,6 @@ import { User } from '../../models/ModelOfUser.js'
 import { getMenuCommands } from '../../utils/get-menu-commands.js'
 import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
 import { getCommonInfoForActions } from './helpers/get-info-for-actions.js'
-import { TemplateService } from '../template/TemplateService.js'
 
 import { CONSTANTS } from '../../config/constants.js'
 
@@ -15,7 +14,7 @@ export class CommandService {
     this.bot = opts.bot
     this.msg = opts.msg
     this.neuralNetwork = opts.neuralNetwork
-    this.templateService = new TemplateService()
+    this.templateService = opts.templateService
   }
 
   [CONSTANTS.COMMANDS.SAY_HELLO] = async () => {
@@ -25,7 +24,7 @@ export class CommandService {
     this.bot.setMyCommands(menuCommands)
 
     if (isAdmin) {
-      const picture = await this.templateService.createTemplateForWelcomeMessage(
+      const picture = await this.templateService.createTemplateForSimpleMessage(
         `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v}! Ты администратор!`
       )
       await this.bot.sendPhoto(chatId, picture)
@@ -36,7 +35,7 @@ export class CommandService {
       await User.create({ ...getCommonUserInfo(this.msg), role: CONSTANTS.USER_ROLES.CANDIDATE })
     }
 
-    const picture = await this.templateService.createTemplateForWelcomeMessage(
+    const picture = await this.templateService.createTemplateForSimpleMessage(
       `Привет, ${this.msg.from.first_name} ${this.msg.from.last_name}${emoji.v} Я хочу задать тебе несколько вопросов, чтобы определить твой психотип. Давай начнем!`
     )
     await this.bot.sendPhoto(chatId, picture)

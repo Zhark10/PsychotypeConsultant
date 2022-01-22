@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import { getHtmlTemplateForAnswer } from './helpers/get-html-template-for-answer.js'
-import { getHtmlTemplateForWelcomeMessage } from './helpers/get-html-template-for-welcome-message.js'
+import { getHtmlTemplateForSimpleMessage } from './helpers/get-html-template-for-simple-message.js'
 
 export class TemplateService {
   constructor() { }
@@ -18,11 +18,11 @@ export class TemplateService {
     return picture;
   };
 
-  createTemplateForWelcomeMessage = async (message) => {
+  createTemplateForSimpleMessage = async (message) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setViewport({width: 360, height: 96, deviceScaleFactor: 3});
-    await page.setContent(getHtmlTemplateForWelcomeMessage(message));
+    await page.setContent(getHtmlTemplateForSimpleMessage(message));
     const picture = await page.screenshot({
       type: 'png',
       fullPage: true,
