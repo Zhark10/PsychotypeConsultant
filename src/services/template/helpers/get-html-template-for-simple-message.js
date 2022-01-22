@@ -1,4 +1,4 @@
-export const getHtmlTemplateForWelcomeMessage = (message) => {
+export const getHtmlTemplateForSimpleMessage = (message) => {
   const colors = {
     primary: '#000000',
     secondary: '#ffff00'
