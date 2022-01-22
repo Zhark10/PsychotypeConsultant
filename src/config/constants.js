@@ -22,7 +22,7 @@ const COMMANDS = {
   RUN_TEST: "/run_test",
   ASK_NEXT_QUESTION: "/ask_next_question",
   GET_STATS_BY_CANDIDATES: "/stats_by_candidates",
-  THROW_FALLBACK_MESSAGE: "throw_fallback_message"
+  THROW_FALLBACK_MESSAGE: "throw_fallback_message",
 }
 
 const USER_ROLES = {

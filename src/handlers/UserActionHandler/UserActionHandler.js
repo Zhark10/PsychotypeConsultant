@@ -3,15 +3,17 @@ import { UserActionHandlerHelpersBy } from "./UserActionHandlerHelpers.js"
 import { CONSTANTS } from "../../config/constants.js"
 import { User } from '../../models/ModelOfUser.js'
 import { PsychotypeData } from "../../perceptron/NeuralPsychotypeTest.js"
+import { TemplateService } from '../../services/template/TemplateService.js'
 
 const { test } = PsychotypeData
 
 export const UserActionHandler = async (bot) => {
   let definedService;
   const neuralNetwork = new NeuralNetwork();
+  const templateService = new TemplateService();
 
   bot.on("message", async (msg) => {
-    const dependencies = { bot, msg, neuralNetwork }
+    const dependencies = { bot, msg, neuralNetwork, templateService }
     definedService = await UserActionHandlerHelpersBy.messages.defineService(msg, dependencies)
     const action = definedService[msg.text] || definedService[CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE]
     return action()
@@ -30,7 +32,8 @@ export const UserActionHandler = async (bot) => {
     )
 
     if (updatedUser.testAnswers.length >= test.length) {
-      bot.sendMessage(chatId, 'Тест завершен! Спасибо за участие!')
+      const picture = await templateService.createTemplateForSimpleMessage('Тест завершен! Спасибо за участие! После проверки результатов с вами свяжутся!')
+      bot.sendPhoto(chatId, picture)
       const isForTrainingSet = [CONSTANTS.USER_ROLES.ADMIN, CONSTANTS.USER_ROLES.EMPLOYEE].includes(updatedUser.role)
       if (isForTrainingSet) return neuralNetwork.perceptronTrain()
       return neuralNetwork.runTestAndSendResult(updatedUser.id)
