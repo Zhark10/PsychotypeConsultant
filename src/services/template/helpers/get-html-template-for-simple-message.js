@@ -23,7 +23,6 @@ export const getHtmlTemplateForSimpleMessage = (message) => {
       <div style=" 
         display: flex; 
         align-items: center; 
-        padding: 8px;
         height: 96;
         font-size: 16px;
         color: ${colors.primary};

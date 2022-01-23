@@ -26,14 +26,13 @@ export const getHtmlTemplateForAnswer = (answer) => {
         display: flex; 
         align-items: center; 
         justify-content: flex-start; 
-        padding: 8px;
         max-width: 320; 
         height: 96;
       ">
         <span style="
-          margin: 0 8px 0 4px;
+          margin-rigth: 8px;
           border: 8px solid rgba(0,0,0,0.08);
-          border-radius: 50% 0 50% 0;
+          border-radius: 0 50% 50% 0;
         ">
           <div style="
             border-radius: 13px;
