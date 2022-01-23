@@ -15,7 +15,7 @@ export const getHtmlTemplateForSimpleMessage = (message) => {
         position: fixed;
         height: 520px;
         width: 520px;
-        border: 150px solid rgba(0,0,0,0.05);
+        border: 150px solid rgba(0,0,0,0.08);
         top: -80px;
         left: 0;
         border-radius: 50%;

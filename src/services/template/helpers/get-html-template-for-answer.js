@@ -17,7 +17,7 @@ export const getHtmlTemplateForAnswer = (answer) => {
         position: fixed;
         height: 520px;
         width: 520px;
-        border: 150px solid rgba(0,0,0,0.05);
+        border: 150px solid rgba(0,0,0,0.08);
         top: -80px;
         left: 0;
         border-radius: 50%;
@@ -31,18 +31,23 @@ export const getHtmlTemplateForAnswer = (answer) => {
         height: 96;
       ">
         <span style="
-          border-radius: 13px;
-          min-width: 26px;
-          min-height: 26px;
-          font-size: 16px;
-          display: flex; 
-          align-items: center; 
-          justify-content: center; 
-          background-color: ${colors.primary}; 
-          color: ${colors.secondary};
-          margin-right: 8px;
+          margin: 0 8px 0 4px;
+          border: 8px solid rgba(0,0,0,0.08);
+          border-radius: 50% 0 50% 0;
         ">
-          ${answerId}
+          <div style="
+            border-radius: 13px;
+            min-width: 26px;
+            min-height: 26px;
+            font-size: 16px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background-color: ${colors.primary}; 
+            color: ${colors.secondary};
+          ">
+            ${answerId}
+          </div>
         </span>
         <span style="
           color: ${colors.primary};
