@@ -7,9 +7,13 @@ export class AdminCommandService extends CandidateCommandService {
   [CONSTANTS.COMMANDS.GET_STATS_BY_CANDIDATES] = async () => {
     const { chatId } = await getCommonInfoForActions(this.msg)
     const allUsers = await User.find({}).exec()
-    allUsers.forEach(user => {
+
+    const stats = allUsers.map((user, index) => {
       const candidatePercentageResult = user.testResult ? `${100 * user.testResult.toFixed(2)}%` : "-"
-      this.bot.sendMessage(chatId, `Имя: ${user.firstname} ${user.lastname}, Результат: ${candidatePercentageResult}`)
+      return `${index + 1}. ${user.firstname} ${user.lastname} - ${candidatePercentageResult}`
     })
+
+    const picture = await this.templateService.createTemplateForStats(stats)
+    await this.bot.sendPhoto(chatId, picture)
   }
 }
