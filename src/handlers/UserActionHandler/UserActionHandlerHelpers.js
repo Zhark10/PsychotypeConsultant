@@ -1,6 +1,6 @@
 import { User } from '../../models/ModelOfUser.js'
 import { CONSTANTS } from "../../config/constants.js"
-import { getCommonUserInfo } from '../../utils/get-common-user-info.js'
+import { getCommonUserInfoByMsg } from '../../utils/get-common-user-info.js'
 
 import { CandidateCommandService } from "../../services/command/CandidateCommandService.js"
 import { EmployeeCommandService } from "../../services/command/EmployeeCommandService.js"
@@ -10,7 +10,7 @@ import { CommandService } from "../../services/command/CommandService.js"
 export const UserActionHandlerHelpersBy = {
   messages: {
     defineService: async (msg, dependencies) => {
-      const user = await User.findOne(getCommonUserInfo(msg)).exec();
+      const user = await User.findOne(getCommonUserInfoByMsg(msg)).exec();
       const role = user?.role;
 
       const services = {
@@ -24,7 +24,5 @@ export const UserActionHandlerHelpersBy = {
       return definedService
     }
   },
-  callbackQueries: {
-    
-  }
+  callbackQueries: {}
 }
