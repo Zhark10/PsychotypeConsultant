@@ -13,7 +13,7 @@ export class AdminCommandService extends CandidateCommandService {
       return `${index + 1}. ${user.firstname} ${user.lastname} - ${candidatePercentageResult}`
     })
 
-    const picture = await this.templateService.createTemplateForStats(stats)
-    await this.bot.sendPhoto(chatId, picture)
+    const createdPicture = await this.templateService.createTemplateForStats(stats)
+    await this.bot.sendPhoto(chatId, createdPicture)
   }
 }
