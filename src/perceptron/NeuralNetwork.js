@@ -16,9 +16,7 @@ export class NeuralNetwork extends NeuralUtils {
   perceptronTrain = async () => {
     const employees = await User.find({ role: CONSTANTS.USER_ROLES.EMPLOYEE })
     const admins = await User.find({ role: CONSTANTS.USER_ROLES.ADMIN })
-
     const usersForTrainingSet = [...employees, ...admins]
-
     const testResultsForSelectedUsers = usersForTrainingSet.map(user => user.testAnswers)
 
     const trainingData = testResultsForSelectedUsers.map(result => ({
