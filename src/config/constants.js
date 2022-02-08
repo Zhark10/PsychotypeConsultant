@@ -2,13 +2,7 @@ import dotenv from 'dotenv'
 import path from 'path';
 const __dirname = path.resolve();
 
-if (process.env.NODE_ENV) {
-  dotenv.config({
-    path: `${__dirname}/.env.${process.env.NODE_ENV}`
-  })
-} else {
-  dotenv.config()
-}
+process.env.NODE_ENV ? dotenv.config({ path: `${__dirname}/.env.${process.env.NODE_ENV}` }) : dotenv.config()
 
 const TOKENS = {
   MONGO_DB: process.env.MONGO_DB_CONNECTION_URL,
