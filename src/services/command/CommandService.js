@@ -49,6 +49,7 @@ export class CommandService {
   };
 
   [CONSTANTS.COMMANDS.THROW_FALLBACK_MESSAGE] = async () => {
+    const { chatId } = await getCommonInfoForActions(this.msg)
     return this.bot.sendMessage(chatId, 'Ответ некорректен')
   }
 }
