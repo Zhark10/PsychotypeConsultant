@@ -6,8 +6,8 @@ export const defineOptionsByMode = (testItem) => {
     })
     return {
       reply_markup: JSON.stringify({
-        inline_keyboard: formattedOptions
-      })
+        inline_keyboard: formattedOptions,
+      }),
     }
   }
 
@@ -20,12 +20,12 @@ export const defineOptionsByMode = (testItem) => {
   }
 
   const optionModes = {
-    1: defaultOptions
+    1: defaultOptions,
   }
 
   return {
     questionId: testItem.questionId,
     question: `${testItem.questionId}. ${testItem.question}`,
-    options: OptionAdapter(optionModes[testItem.optionMode])
+    options: OptionAdapter(optionModes[testItem.optionMode]),
   }
 }

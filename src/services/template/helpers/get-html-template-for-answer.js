@@ -1,7 +1,7 @@
 export const getHtmlTemplateForAnswer = (answer) => {
   const colors = {
     primary: '#000000',
-    secondary: '#ffff00'
+    secondary: '#ffff00',
   }
   const answerId = answer.split('.')[0]
   const answerText = answer.split('.')[1]

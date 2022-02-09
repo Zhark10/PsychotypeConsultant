@@ -1,5 +1,7 @@
-import TelegramApi from "node-telegram-bot-api";
+import TelegramApi from 'node-telegram-bot-api'
 
-import { CONSTANTS } from "./constants.js"
+import { CONSTANTS } from './constants.js'
 
-export const bot = new TelegramApi(CONSTANTS.TOKENS.TELEGRAM_BOT, { polling: true })
+export const bot = new TelegramApi(CONSTANTS.TOKENS.TELEGRAM_BOT, {
+  polling: true,
+})

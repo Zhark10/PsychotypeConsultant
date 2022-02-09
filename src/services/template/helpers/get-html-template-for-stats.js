@@ -1,12 +1,14 @@
 export const getHtmlTemplateForStats = (results, calculatedHeight) => {
   const colors = {
     primary: '#000000',
-    secondary: '#ffff00'
+    secondary: '#ffff00',
   }
 
   const renderStats = () => {
-    return results.map(result =>
-      `<div style=" 
+    return results
+      .map(
+        (result) =>
+          `<div style=" 
         display: flex; 
         align-items: center; 
         height: 18px;
@@ -15,7 +17,8 @@ export const getHtmlTemplateForStats = (results, calculatedHeight) => {
       ">
           ${result}
       </div>`
-    ).join('')
+      )
+      .join('')
   }
 
   return `

@@ -1,6 +1,6 @@
-import { CandidateCommandService } from "./CandidateCommandService.js"
+import { CandidateCommandService } from './CandidateCommandService.js'
 import { User } from '../../models/ModelOfUser.js'
-import { CONSTANTS } from "../../config/constants.js"
+import { CONSTANTS } from '../../config/constants.js'
 import { getCommonInfoForActions } from './helpers/get-info-for-actions.js'
 
 export class AdminCommandService extends CandidateCommandService {
@@ -9,11 +9,17 @@ export class AdminCommandService extends CandidateCommandService {
     const allUsers = await User.find({}).exec()
 
     const stats = allUsers.map((user, index) => {
-      const candidatePercentageResult = user.testResult ? `${100 * user.testResult.toFixed(2)}%` : "-"
-      return `${index + 1}. ${user.firstname} ${user.lastname} - ${candidatePercentageResult}`
+      const candidatePercentageResult = user.testResult
+        ? `${100 * user.testResult.toFixed(2)}%`
+        : '-'
+      return `${index + 1}. ${user.firstname} ${
+        user.lastname
+      } - ${candidatePercentageResult}`
     })
 
-    const createdPicture = await this.templateService.createTemplateForStats(stats)
+    const createdPicture = await this.templateService.createTemplateForStats(
+      stats
+    )
     await this.bot.sendPhoto(chatId, createdPicture)
   }
 }

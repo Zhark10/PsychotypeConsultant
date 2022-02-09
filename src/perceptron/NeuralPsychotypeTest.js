@@ -1,4 +1,4 @@
-import { defineOptionsByMode } from "./helpers/define-options-by-mode.js"
+import { defineOptionsByMode } from './helpers/define-options-by-mode.js'
 
 const test = [
   {
@@ -118,7 +118,8 @@ const test = [
   },
   {
     questionId: 24,
-    question: 'Вы стремитесь обладать чем-либо или кем-либо единолично и безраздельно?',
+    question:
+      'Вы стремитесь обладать чем-либо или кем-либо единолично и безраздельно?',
     optionMode: 1,
   },
   {
@@ -153,7 +154,8 @@ const test = [
   },
   {
     questionId: 31,
-    question: 'Способны ли вы самостоятельно и своевременно принимать ответственные решения?',
+    question:
+      'Способны ли вы самостоятельно и своевременно принимать ответственные решения?',
     optionMode: 1,
   },
   {
@@ -184,5 +186,5 @@ const test = [
 ].map(defineOptionsByMode)
 
 export const PsychotypeData = {
-  test
+  test,
 }
